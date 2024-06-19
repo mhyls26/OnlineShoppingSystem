@@ -12,18 +12,13 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBConnection {
-    private static final String URL = "jdbc:mysql://localhost:3306/shopping-cart";
-    private static final String USER = "root"; 
-    private static final String PASSWORD = "m082604C_"; 
 
-    public static Connection getConnection() {
-        Connection connection = null;
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection(URL, USER, PASSWORD);
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+    private static Connection conn = null;
+
+    public static Connection getConnection(String DB_URL, String DB_USER, String DB_PASSWORD) throws SQLException {
+        if (conn == null || conn.isClosed()) {
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/shopping-cart", "root", "m082604C_");
         }
-        return connection;
-    }
-}
+        return null;
+    }}
+    

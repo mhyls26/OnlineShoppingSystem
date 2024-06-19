@@ -1,14 +1,36 @@
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.Properties;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.swing.JOptionPane;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
+
 /**
  *
- * @author Mhyls
+ * @author Julia Gwen Zablan
  */
-public class RegPage extends javax.swing.JFrame {
 
+public class RegPage extends javax.swing.JFrame {
+private static final String DB_URL = "jdbc:mysql://localhost:3306/shopping-cart";
+    private static final String DB_USER = "root";
+    private static final String DB_PASSWORD = "m082604C_";
+    private static final String EMAIL_USER = "zidacmhyls26@gmail.com";
+    private static final String EMAIL_PASSWORD = "awle wuej uogi fcmi";
+    
     /**
      * Creates new form RegPage
      */
@@ -25,21 +47,329 @@ public class RegPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        regPanel = new javax.swing.JPanel();
+        regLabel = new javax.swing.JLabel();
+        fntl = new javax.swing.JLabel();
+        fname = new javax.swing.JTextField();
+        lntl = new javax.swing.JLabel();
+        lname = new javax.swing.JTextField();
+        bdtl = new javax.swing.JLabel();
+        gtl = new javax.swing.JLabel();
+        adtl = new javax.swing.JLabel();
+        address = new javax.swing.JTextField();
+        zctl = new javax.swing.JLabel();
+        zipcode = new javax.swing.JTextField();
+        pntl = new javax.swing.JLabel();
+        phonenum = new javax.swing.JTextField();
+        untl = new javax.swing.JLabel();
+        eMail = new javax.swing.JTextField();
+        npwtl = new javax.swing.JLabel();
+        cpwtl = new javax.swing.JLabel();
+        RegBtn = new javax.swing.JButton();
+        cancelButton = new javax.swing.JButton();
+        newpass = new javax.swing.JPasswordField();
+        confirmpass = new javax.swing.JPasswordField();
+        day = new javax.swing.JComboBox<>();
+        month = new javax.swing.JComboBox<>();
+        year = new javax.swing.JComboBox<>();
+        gender = new javax.swing.JComboBox<>();
+        Loginbtn = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        regPanel.setBackground(new java.awt.Color(255, 204, 204));
+
+        regLabel.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
+        regLabel.setForeground(new java.awt.Color(255, 0, 102));
+        regLabel.setText("REGISTRATION FORM");
+
+        fntl.setText("First Name:");
+
+        lntl.setText("Last Name:");
+
+        bdtl.setText("Birthday:");
+
+        gtl.setText("Gender:");
+
+        adtl.setText("Address:");
+
+        zctl.setText("ZIP Code:");
+
+        pntl.setText("Phone Number:");
+
+        untl.setText("Email:");
+
+        npwtl.setText("New Password:");
+
+        cpwtl.setText("Confirm Password:");
+
+        RegBtn.setBackground(new java.awt.Color(255, 0, 102));
+        RegBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        RegBtn.setForeground(new java.awt.Color(255, 255, 255));
+        RegBtn.setText("Register");
+        RegBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegBtnActionPerformed(evt);
+            }
+        });
+
+        cancelButton.setText("Cancel");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
+
+        day.setBackground(new java.awt.Color(255, 204, 204));
+        day.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+
+        month.setBackground(new java.awt.Color(255, 204, 204));
+        month.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" }));
+
+        year.setBackground(new java.awt.Color(255, 204, 204));
+        year.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "1800", "1801", "1802", "1803", "1804", "1805", "1806", "1807", "1808", "1809", "1810", "1811", "1812", "1813", "1814", "1815", "1816", "1817", "1818", "1819", "1820", "1821", "1822", "1823", "1824", "1825", "1826", "1827", "1828", "1829", "1830", "1831", "1832", "1833", "1834", "1835", "1836", "1837", "1838", "1839", "1840", "1841", "1842", "1843", "1844", "1845", "1846", "1847", "1848", "1849", "1850", "1851", "1852", "1853", "1854", "1855", "1856", "1857", "1858", "1859", "1860", "1861", "1862", "1863", "1864", "1865", "1866", "1867", "1868", "1869", "1870", "1871", "1872", "1873", "1874", "1875", "1876", "1877", "1878", "1879", "1880", "1881", "1882", "1883", "1884", "1885", "1886", "1887", "1888", "1889", "1890", "1891", "1892", "1893", "1894", "1895", "1896", "1897", "1898", "1899", "1900", "1901", "1902", "1903", "1904", "1905", "1906", "1907", "1908", "1909", "1910", "1911", "1912", "1913", "1914", "1915", "1916", "1917", "1918", "1919", "1920", "1921", "1922", "1923", "1924", "1925", "1926", "1927", "1928", "1929", "1930", "1931", "1932", "1933", "1934", "1935", "1936", "1937", "1938", "1939", "1940", "1941", "1942", "1943", "1944", "1945", "1946", "1947", "1948", "1949", "1950", "1951", "1952", "1953", "1954", "1955", "1956", "1957", "1958", "1959", "1960", "1961", "1962", "1963", "1964", "1965", "1966", "1967", "1968", "1969", "1970", "1971", "1972", "1973", "1974", "1975", "1976", "1977", "1978", "1979", "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024" }));
+
+        gender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Female", "Male" }));
+
+        Loginbtn.setBackground(new java.awt.Color(255, 204, 204));
+        Loginbtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        Loginbtn.setForeground(new java.awt.Color(51, 51, 51));
+        Loginbtn.setText("Already have an account? Login");
+        Loginbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LoginbtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout regPanelLayout = new javax.swing.GroupLayout(regPanel);
+        regPanel.setLayout(regPanelLayout);
+        regPanelLayout.setHorizontalGroup(
+            regPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, regPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(regLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(97, 97, 97))
+            .addGroup(regPanelLayout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addGroup(regPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(fname)
+                    .addComponent(address)
+                    .addGroup(regPanelLayout.createSequentialGroup()
+                        .addGroup(regPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(Loginbtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(fntl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bdtl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(adtl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pntl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(npwtl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, regPanelLayout.createSequentialGroup()
+                                .addComponent(day, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(month, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(year, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(phonenum, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(newpass, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(32, 32, 32)
+                .addGroup(regPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(regPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(RegBtn)
+                        .addGap(18, 18, 18)
+                        .addComponent(cancelButton)
+                        .addContainerGap(41, Short.MAX_VALUE))
+                    .addGroup(regPanelLayout.createSequentialGroup()
+                        .addGroup(regPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(gender, javax.swing.GroupLayout.Alignment.LEADING, 0, 194, Short.MAX_VALUE)
+                            .addComponent(zctl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lntl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(gtl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(untl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lname, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(zipcode, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(eMail, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(confirmpass, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cpwtl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(14, Short.MAX_VALUE))))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        regPanelLayout.setVerticalGroup(
+            regPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(regPanelLayout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(regLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
+                .addGroup(regPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fntl)
+                    .addComponent(lntl))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(regPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(regPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bdtl)
+                    .addComponent(gtl))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(regPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(day, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(month, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(year, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(regPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(adtl)
+                    .addComponent(zctl))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(regPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(address, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(zipcode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(regPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pntl)
+                    .addComponent(untl))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(regPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(phonenum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(eMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(regPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(npwtl)
+                    .addComponent(cpwtl))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(regPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(confirmpass)
+                    .addComponent(newpass))
+                .addGap(18, 18, 18)
+                .addComponent(Loginbtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(regPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(RegBtn)
+                    .addComponent(cancelButton))
+                .addGap(55, 55, 55))
         );
+
+        getContentPane().add(regPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 480, 540));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/glamchic bg.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 1200, 610));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void LoginbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginbtnActionPerformed
+         LoginPage loginForm = new LoginPage();
+    loginForm.setVisible(true);
+    this.dispose(); 
+    }//GEN-LAST:event_LoginbtnActionPerformed
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_cancelButtonActionPerformed
+
+    private void RegBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegBtnActionPerformed
+    String firstName = fname.getText().trim();
+    String lastName = lname.getText().trim();
+    String email = eMail.getText().trim();
+    String newPassword = new String(newpass.getPassword());
+    String confirmPassword = new String(confirmpass.getPassword());
+    String userAddress = address.getText().trim();
+    String zipCode = zipcode.getText().trim();
+    String phoneNumber = phonenum.getText().trim();
+    String userGender = gender.getSelectedItem().toString();
+    String userBirthday = day.getSelectedItem().toString() + " " +
+            month.getSelectedItem().toString() + " " +
+            year.getSelectedItem().toString();
+
+    // Validate input
+    if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() ||
+            newPassword.isEmpty() || confirmPassword.isEmpty() ||
+            userAddress.isEmpty() || zipCode.isEmpty() || phoneNumber.isEmpty() ||
+            userGender.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Please fill in all fields.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    if (!newPassword.equals(confirmPassword)) {
+        JOptionPane.showMessageDialog(null, "Passwords do not match.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // Attempt to send the registration confirmation email
+    try {
+        EmailSender.sendEmail(email, "Welcome to GlamChic - Registration Confirmation", 
+        "Hello, " + firstName + "! \n\n" +
+        "Welcome to GlamChic, your ultimate fashion destination!\n\n" +
+        "Thank you for joining us. As a special treat for you, use the code GLAMCHIC10 at checkout to enjoy 10% off your first purchase!\n\n" +
+        "Discover the latest trends, shop chic outfits, and indulge in glamorous accessories that elevate your style effortlessly.\n\n" +
+        "Happy shopping and stay fabulous!\n\n" +
+        "With love,\n" +
+        "The GlamChic Team");
+        JOptionPane.showMessageDialog(null, "Registration successful. Check your email for confirmation.", "Success", JOptionPane.INFORMATION_MESSAGE);
+        clearFormFields();
+        this.dispose(); 
+            LoginPage loginFrame = new LoginPage();
+            loginFrame.setVisible(true);
+    } catch (MessagingException ex) {
+        ex.printStackTrace();
+        JOptionPane.showMessageDialog(null, "Registration successful, but failed to send confirmation email.", "Email Error", JOptionPane.WARNING_MESSAGE);
+    }
+}
+
+
+private boolean registerUser(String firstName, String lastName, String email, String password, String address, String zipCode, String phoneNumber, String gender, String birthday) {
+    boolean success = false;
+    try {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        try {
+            conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+            String sql = "INSERT INTO users (first_name, last_name, email, password, address, zip_code, phone_number, gender, birthday) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, firstName);
+            pstmt.setString(2, lastName);
+            pstmt.setString(3, email);
+            pstmt.setString(4, password);
+            pstmt.setString(5, address);
+            pstmt.setString(6, zipCode);
+            pstmt.setString(7, phoneNumber);
+            pstmt.setString(8, gender);
+            pstmt.setString(9, birthday);
+
+            int rowsInserted = pstmt.executeUpdate();
+            if (rowsInserted > 0) {
+                success = true;
+            }
+        } finally {
+            if (pstmt != null) {
+                pstmt.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+    return success;
+}
+
+private void clearFormFields() {
+    fname.setText("");
+    lname.setText("");
+    eMail.setText("");
+    newpass.setText("");
+    confirmpass.setText("");
+    address.setText("");
+    zipcode.setText("");
+    phonenum.setText("");
+    gender.setSelectedIndex(0);
+    day.setSelectedIndex(0);
+    month.setSelectedIndex(0);
+    year.setSelectedIndex(0);
+    }//GEN-LAST:event_RegBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -67,6 +397,7 @@ public class RegPage extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(RegPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -77,5 +408,33 @@ public class RegPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Loginbtn;
+    private javax.swing.JButton RegBtn;
+    private javax.swing.JTextField address;
+    private javax.swing.JLabel adtl;
+    private javax.swing.JLabel bdtl;
+    private javax.swing.JButton cancelButton;
+    private javax.swing.JPasswordField confirmpass;
+    private javax.swing.JLabel cpwtl;
+    private javax.swing.JComboBox<String> day;
+    private javax.swing.JTextField eMail;
+    private javax.swing.JTextField fname;
+    private javax.swing.JLabel fntl;
+    private javax.swing.JComboBox<String> gender;
+    private javax.swing.JLabel gtl;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField lname;
+    private javax.swing.JLabel lntl;
+    private javax.swing.JComboBox<String> month;
+    private javax.swing.JPasswordField newpass;
+    private javax.swing.JLabel npwtl;
+    private javax.swing.JTextField phonenum;
+    private javax.swing.JLabel pntl;
+    private javax.swing.JLabel regLabel;
+    private javax.swing.JPanel regPanel;
+    private javax.swing.JLabel untl;
+    private javax.swing.JComboBox<String> year;
+    private javax.swing.JLabel zctl;
+    private javax.swing.JTextField zipcode;
     // End of variables declaration//GEN-END:variables
 }
